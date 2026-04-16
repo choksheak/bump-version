@@ -1,0 +1,47 @@
+{
+  "name": "@choksheak/bump-version",
+  "license": "The Unlicense",
+  "version": "0.1.0",
+  "description": "A simple CLI tool to bump the version in package.json.",
+  "private": false,
+  "sideEffects": false,
+  "type": "module",
+  "bin": {
+    "bump-version": "./bump-version.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/choksheak/bump-version.git"
+  },
+  "keywords": [
+    "chok",
+    "TS",
+    "bump",
+    "version",
+    "typescript",
+    "cli"
+  ],
+  "author": "ChokSheak Lau",
+  "homepage": "https://github.com/choksheak/bump-version#readme",
+  "scripts": {
+    "tsc": "npx tsc",
+    "clean": "rm -rf dist",
+    "build": "tsup",
+    "bump": "tsx src/bump-version.ts",
+    "bump:plus": "tsx src/bump-version.ts plus",
+    "bump:patch": "tsx src/bump-version.ts patch",
+    "bump:minor": "tsx src/bump-version.ts minor",
+    "bump:major": "tsx src/bump-version.ts major",
+    "bump:get": "tsx src/bump-version.ts get",
+    "pkg": "mkdir -p dist && cp -f package.json LICENSE README.md dist",
+    "pub": "npm publish dist/ --access=public",
+    "commit": "git add . && git commit -m 'Release '`npx tsx src/bump-version.ts get`",
+    "release": "npm run clean && npm run bump && npm i && npm run tsc && npm run build && npm run pkg && npm run pub && npm run commit"
+  },
+  "devDependencies": {
+    "@types/node": "^25",
+    "tsup": "^8",
+    "tsx": "^4",
+    "typescript": "^6"
+  }
+}

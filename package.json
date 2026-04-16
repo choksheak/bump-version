@@ -1,7 +1,7 @@
 {
   "name": "@choksheak/bump-version",
   "license": "The Unlicense",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A simple CLI tool to bump the version in package.json.",
   "private": false,
   "sideEffects": false,

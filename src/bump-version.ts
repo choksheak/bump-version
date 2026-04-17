@@ -3,17 +3,19 @@
 import * as fs from "fs";
 import * as path from "path";
 
-function usage() {
+function usage(exitCode: number) {
   console.log(``);
   console.log(`Usage: bump-version [major|minor|patch|plus|get]`);
   console.log(``);
-  console.log(`major: Bump the major version.`);
-  console.log(`minor: Bump the minor version.`);
-  console.log(`patch: Bump the patch version.`);
-  console.log(` plus: Increment the patch till 9, then minor till 9, then major.`);
-  console.log(`  get: Print version and exit.`);
+  console.log(`  major: Bump the major version.`);
+  console.log(`  minor: Bump the minor version.`);
+  console.log(`  patch: Bump the patch version.`);
+  console.log(`  plus : Increment the patch till 9, then minor till 9, then major.`);
+  console.log(`  get  : Print version and exit.`);
   console.log(``);
-  process.exit(1);
+  console.log(`  --help, -h, -?: Print help and exit.`);
+  console.log(``);
+  process.exit(exitCode);
 }
 
 // Read args
@@ -21,13 +23,18 @@ const args = process.argv.slice(2);
 
 if (args.length > 1) {
   console.error(`Too many arguments.`);
-  usage();
+  usage(1);
 }
 
 let bumpType: "major" | "minor" | "patch" | "plus" | "get" = "plus";
 
 if (args.length) {
   switch (args[0]) {
+    case "--help":
+    case "-h":
+    case "-?":
+      usage(0);
+      break;
     case "major":
     case "minor":
     case "patch":
@@ -37,7 +44,7 @@ if (args.length) {
       break;
     default:
       console.error(`Invalid argument "${args[0]}".`);
-      usage();
+      usage(1);
   }
 }
 

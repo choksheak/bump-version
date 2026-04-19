@@ -4,11 +4,11 @@ A simple CLI tool to bump the version in package.json.
 
 ## Installation
 
-**Local:** `npm i -D @choksheak/bump-version`
+**Local:** `pnpm add -D @choksheak/bump-version`
 
-**Global:** `npm i -g -D @choksheak/bump-version`
+**Global:** `pnpm add -g @choksheak/bump-version`
 
-If you install globally, you can use `bump-version` from anywhere. Otherwise just use `npx bump-version` locally within your repo.
+If you install globally, you can use `bump-version` from anywhere. Otherwise use `pnpm exec bump-version` (or `npx bump-version`) locally within your repo.
 
 ## Usage
 

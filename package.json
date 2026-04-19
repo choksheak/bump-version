@@ -24,7 +24,8 @@
   "author": "ChokSheak Lau",
   "homepage": "https://github.com/choksheak/bump-version#readme",
   "scripts": {
-    "tsc": "npx tsc",
+    "preinstall": "npx only-allow pnpm",
+    "tsc": "pnpm exec tsc",
     "clean": "rm -rf dist",
     "build": "tsup",
     "bump": "tsx src/bump-version.ts",
@@ -34,14 +35,16 @@
     "bump:major": "tsx src/bump-version.ts major",
     "bump:get": "tsx src/bump-version.ts get",
     "pkg": "mkdir -p dist && cp -f package.json LICENSE README.md dist",
-    "pub": "npm publish dist/ --access=public",
-    "commit": "git add . && git commit -m 'Release '`npx tsx src/bump-version.ts get`",
-    "release": "npm run clean && npm run bump && npm i && npm run tsc && npm run build && npm run pkg && npm run pub && npm run commit"
+    "pub": "pnpm publish dist/ --access=public",
+    "commit": "git add . && git commit -m 'Release '`pnpm exec tsx src/bump-version.ts get`",
+    "release": "pnpm run clean && pnpm run bump && pnpm install && pnpm run tsc && pnpm run build && pnpm run pkg && pnpm run pub && pnpm run commit"
   },
   "devDependencies": {
     "@types/node": "^25",
+    "only-allow": "^1.2.2",
     "tsup": "^8",
     "tsx": "^4",
     "typescript": "^6"
-  }
+  },
+  "packageManager": "pnpm@10.6.5"
 }
